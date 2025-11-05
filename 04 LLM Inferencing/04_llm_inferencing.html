@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>LLM Inference — Notes</title>
+        <style>
+            body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#071022;color:#e6eef6}
+            .wrap{max-width:900px;margin:36px auto;padding:20px}
+            .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:22px;border-radius:10px}
+            h1{margin-top:0}
+            p{color:#a9b6c8;line-height:1.6}
+            a.link{color:#7dd3fc}
+            ul{color:#a9b6c8}
+            .back{display:inline-block;margin-top:16px;text-decoration:none;color:#94a3b8}
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="card">
+                <h1>LLM Inference — Key points</h1>
+                <p>
+                    This page summarizes practical points about LLM inference (serving models and generating outputs). The notes below are adapted from a Hugging Face article which covers what inference is, its challenges, and approaches to optimize latency, cost, and quality.
+                </p>
+
+
+                <h3>What is inference?</h3>
+                <p>Inference is the process of using a trained model to generate outputs (predictions, text, tokens) for user prompts. It's the runtime bridge between training and delivering real-world responses. citeturn1search0</p>
+
+
+                <h3>Primary challenges</h3>
+                <ul>
+                    <li><strong>Latency:</strong> Time to first token (TTFT) and overall response time are critical for user experience. citeturn1search7turn1search0</li>
+                    <li><strong>Cost:</strong> Larger models require more compute per token — optimizations and model selection matter. citeturn1search0turn1search13</li>
+                    <li><strong>Scalability:</strong> Handling many concurrent requests needs batching, sharding, or specialized serving stacks. citeturn1search0</li>
+                    <li><strong>Quality vs Efficiency:</strong> Trade-offs between cheaper, faster models and higher-quality responses; techniques like distillation and adapters help. citeturn1search15turn1search0</li>
+                </ul>
+                <h3>Common approaches & tools</h3>
+                <ul>
+                    <li>Model quantization and pruning to reduce memory & compute.</li>
+                    <li>Dynamic batching and tensor parallelism for throughput gains. citeturn1search13</li>
+                    <li>Using TGI / Triton / optimized runtimes for lower latency. citeturn1search13</li>
+                    <li>Hybrid strategies: small base models plus LoRA adapters or retrieval-augmented generation (RAG) for good cost/quality balance. citeturn1search16turn1search15</li>
+                </ul>
+
+
+                <h3>Quick links</h3>
+                <p>
+                    <a class="link" href="https://huggingface.co/blog/Kseniase/inference" target="_blank">Hugging Face — Understanding Inference (Kseniase)</a>
+                </p>
+
+
+                <a class="back" href="/">← Back</a>
+            </div>
+        </div>
+    </body>
+</html>
