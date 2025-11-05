@@ -1,0 +1,17 @@
+<!-- sections/infer.html -->
+<div>
+  <h2 style="color:#7dd3fc;margin-top:0;">LLM Inference</h2>
+  <p style="color:#9aa6bd;line-height:1.6;font-size:15px;">
+    Inference is the runtime phase where the model generates outputs for incoming prompts. Key goals are low latency, predictable cost, and stable quality.
+  </p>
+
+  <h3 style="color:#e6eef6;margin-top:14px;">Practical tips</h3>
+  <ul style="color:#9aa6bd;line-height:1.6">
+    <li>Profile cold starts and token latency (TTFT)</li>
+    <li>Batch requests where possible to improve throughput</li>
+    <li>Use quantized models (8-bit/4-bit) if acceptable for quality</li>
+    <li>Consider caching frequent prompts or using RAG for long-context answers</li>
+  </ul>
+
+  <p style="margin-top:12px;color:#9aa6bd">Source notes: adapted from Hugging Face's inference discussion. Edit <code>sections/infer.html</code> to expand with code or examples.</p>
+</div>

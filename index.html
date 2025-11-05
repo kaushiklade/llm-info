@@ -1,39 +1,125 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>LLM Info — Home</title>
-        <style>
-            :root{--bg:#0b1220;--card:#071222;--accent:#7dd3fc;--muted:#9aa6bd}
-            body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#071028,#081427);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center}
-            .wrap{max-width:920px;padding:28px;width:100%}
-            .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:28px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
-            h1{margin:0 0 12px 0}
-            p.lead{color:var(--muted);margin-top:0}
-            .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-            .btn{display:flex;align-items:center;justify-content:center;padding:16px;border-radius:10px;text-decoration:none;font-weight:700;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);color:inherit}
-            .btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(2,6,23,0.5)}
-            footer{margin-top:18px;text-align:center;color:var(--muted)}
-            @media (max-width:700px){.grid{grid-template-columns:1fr}}
-        </style>
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Large Language Model Warehouse</title>
+  </head>
 
-    <body>
-        <div class="wrap">
-            <div class="card">
-                <h1>LLM Info</h1>
-                <p class="lead">Quick links to the four LLM topics — Base, Train, Deployment, Inference.</p>
+  <body style="margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#071028,#081427);color:#e6eef6;overflow-x:hidden;">
+    
+    <!-- HEADER -->
+    <header style="position:fixed;top:0;left:0;right:0;padding:24px 28px;background:linear-gradient(180deg,rgba(2,6,23,0.8),rgba(2,6,23,0.4));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.05);z-index:100;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <h1 style="margin:0;font-size:24px;color:#7dd3fc;">Large Language Model Warehouse</h1>
+        <p style="margin:6px 0;color:#9aa6bd;font-size:15px;line-height:1.5;">
+          A consolidated view to understand Language Models through 4 basic components:
+        </p>
 
-                <div class="grid">
-                    <a class="btn" href="./01 LLM Basics/01_llm_basics.html">LLM Basics</a>
-                    <a class="btn" href="./02 LLM Training/02_llm_training.html">LLM Training</a>
-                    <a class="btn" href="./03 LLM Deployment/03_llm_deployment.html">LLM Deployment</a>
-                    <a class="btn" href="./04 LLM Inferencing/04_llm_inferencing.html">LLM Inferencing</a>
-                </div>
+        <!-- TAB BUTTONS -->
+        <nav id="tabs" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+          <a href="#base" id="tab-base" onclick="selectTab('base')" 
+             style="padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;
+                    background:#7dd3fc;color:#041627;border:1px solid #7dd3fc;">
+            Base
+          </a>
+          <a href="#train" id="tab-train" onclick="selectTab('train')" 
+             style="padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;
+                    background:rgba(255,255,255,0.05);color:#e6eef6;border:1px solid rgba(255,255,255,0.08);">
+            Train
+          </a>
+          <a href="#deploy" id="tab-deploy" onclick="selectTab('deploy')" 
+             style="padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;
+                    background:rgba(255,255,255,0.05);color:#e6eef6;border:1px solid rgba(255,255,255,0.08);">
+            Deployment
+          </a>
+          <a href="#infer" id="tab-infer" onclick="selectTab('infer')" 
+             style="padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;
+                    background:rgba(255,255,255,0.05);color:#e6eef6;border:1px solid rgba(255,255,255,0.08);">
+            Inference
+          </a>
+        </nav>
+      </div>
+    </header>
 
-                <footer>Footer</footer>
-            </div>
-        </div>
-    </body>
+    <!-- MAIN CONTENT (CHANGING SECTION) -->
+    <main style="max-width:1200px;margin:0 auto;padding:24px;width:100%;padding-top:220px;padding-bottom:110px;min-height:calc(100vh - 70px);">
+      <div id="content-area" style="
+        background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+        padding:22px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      ">
+        <!-- initial content will be loaded by JS -->
+        <div style="color:#9aa6bd">Loading…</div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(2,6,23,0.5),rgba(2,6,23,0.8));border-top:1px solid rgba(255,255,255,0.05);color:#9aa6bd;padding:14px 28px;z-index:90;">
+      <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <img src="assets/logo.png" alt="LLM Info Logo" style="height:32px;width:auto;filter:brightness(0) invert(1);" />
+
+        <nav style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+          <a href='index.html' style="color:#7dd3fc;text-decoration:none;font-weight:600;">Home</a>
+          <a href='https://github.com/kaushiklade' target='_blank' style="color:#7dd3fc;text-decoration:none;font-weight:600;">GitHub</a>
+          <a href='https://linkedin.com/in/kaushiklade' target='_blank' style="color:#7dd3fc;text-decoration:none;font-weight:600;">LinkedIn</a>
+          <a href='mailto:kaushik@example.com' style="color:#7dd3fc;text-decoration:none;font-weight:600;">Email</a>
+        </nav>
+
+        <div style="font-size:13px;color:#9aa6bd;white-space:nowrap;margin-left:auto;">© 2025 Kaushik Lade</div>
+      </div>
+    </footer>
+
+    <!-- SCRIPT: load section files and swap content -->
+    <script>
+      async function loadSection(name) {
+        const contentArea = document.getElementById('content-area');
+        try {
+          const res = await fetch('sections/' + name + '.html', {cache: "no-store"});
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const text = await res.text();
+          // Insert fetched markup as-is. The section files contain only the inner content.
+          contentArea.innerHTML = text;
+          // Smooth scroll to top of main content when switching
+          window.scrollTo({ top: document.querySelector('main').offsetTop - 20, behavior: 'smooth' });
+        } catch (err) {
+          contentArea.innerHTML = '<div style="color:#ffb4b4">Error loading section: ' + err.message + '</div>';
+        }
+      }
+
+      function selectTab(tab) {
+        // update tab styles
+        ['base','train','deploy','infer'].forEach(id => {
+          const el = document.getElementById('tab-' + id);
+          if (!el) return;
+          if (id === tab) {
+            el.style.background = '#7dd3fc';
+            el.style.color = '#041627';
+            el.style.border = '1px solid #7dd3fc';
+          } else {
+            el.style.background = 'rgba(255,255,255,0.05)';
+            el.style.color = '#e6eef6';
+            el.style.border = '1px solid rgba(255,255,255,0.08)';
+          }
+        });
+        // load file
+        loadSection(tab);
+        // update URL hash (so back/forward works)
+        history.replaceState(null, '', '#' + tab);
+      }
+
+      // On load: choose initial tab from hash or default to base
+      window.addEventListener('DOMContentLoaded', () => {
+        const initial = (location.hash && location.hash.slice(1)) || 'base';
+        // validate
+        const valid = ['base','train','deploy','infer'].includes(initial) ? initial : 'base';
+        selectTab(valid);
+      });
+
+      // Support back/forward: when hash changes, load that tab
+      window.addEventListener('hashchange', () => {
+        const h = location.hash.slice(1) || 'base';
+        if (['base','train','deploy','infer'].includes(h)) selectTab(h);
+      });
+    </script>
+  </body>
 </html>
